@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { fetchPets, addPet, editPet, removePet } from '../store/slices/petSlice';
-import { Plus, Edit, Trash2, X, ArrowLeft, PawPrint, Award, Calendar } from 'lucide-react';
+import { Plus, Edit, Trash2, X, ArrowLeft, PawPrint, Award, Calendar, Loader2 } from 'lucide-react';
 import { Pet, PetStatus } from '../types';
 import CustomSelect from '../components/CustomSelect';
 import ImageUpload from '../components/ImageUpload';
@@ -21,6 +21,7 @@ export default function PetManagement() {
   const [showForm, setShowForm] = useState(false);
   const [formMode, setFormMode] = useState<FormMode>(null);
   const [editingPet, setEditingPet] = useState<Pet | null>(null);
+  const [deletingPetId, setDeletingPetId] = useState<string | null>(null);
   const [formData, setFormData] = useState({
     name: '',
     species: '',
@@ -104,8 +105,15 @@ export default function PetManagement() {
       isOpen: true,
       title: 'Delete Pet',
       message: 'Are you sure you want to delete this pet? This will also delete all related applications.',
-      onConfirm: () => {
-        dispatch(removePet(petId));
+      onConfirm: async () => {
+        setDeletingPetId(petId);
+        try {
+          await dispatch(removePet(petId)).unwrap();
+        } catch (error) {
+          // Error is already handled by the slice with toast
+        } finally {
+          setDeletingPetId(null);
+        }
       },
     });
   };
@@ -459,8 +467,16 @@ export default function PetManagement() {
           {pets.map((pet) => (
             <div
               key={pet.id}
-              className="bg-white rounded-lg shadow-md overflow-hidden"
+              className="bg-white rounded-lg shadow-md overflow-hidden relative"
             >
+              {deletingPetId === pet.id && (
+                <div className="absolute inset-0 bg-white bg-opacity-75 z-10 flex items-center justify-center rounded-lg">
+                  <div className="text-center">
+                    <Loader2 className="h-12 w-12 animate-spin text-red-600 mx-auto mb-2" />
+                    <p className="text-gray-700 font-semibold">Deleting pet...</p>
+                  </div>
+                </div>
+              )}
               <div className="relative h-48">
                 <img
                   src={pet.image}
@@ -504,17 +520,28 @@ export default function PetManagement() {
                 <div className="flex space-x-2">
                   <button
                     onClick={() => handleEdit(pet)}
-                    className="flex-1 bg-emerald-600 text-white py-2 rounded-md hover:bg-emerald-700 transition-colors font-semibold flex items-center justify-center space-x-2"
+                    disabled={deletingPetId === pet.id}
+                    className="flex-1 bg-emerald-600 text-white py-2 rounded-md hover:bg-emerald-700 transition-colors font-semibold flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
                     <Edit className="h-4 w-4" />
                     <span>Edit</span>
                   </button>
                   <button
                     onClick={() => handleDelete(pet.id)}
-                    className="flex-1 bg-red-600 text-white py-2 rounded-md hover:bg-red-700 transition-colors font-semibold flex items-center justify-center space-x-2"
+                    disabled={deletingPetId === pet.id}
+                    className="flex-1 bg-red-600 text-white py-2 rounded-md hover:bg-red-700 transition-colors font-semibold flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
                   >
-                    <Trash2 className="h-4 w-4" />
-                    <span>Delete</span>
+                    {deletingPetId === pet.id ? (
+                      <>
+                        <Loader2 className="h-4 w-4 animate-spin" />
+                        <span>Deleting...</span>
+                      </>
+                    ) : (
+                      <>
+                        <Trash2 className="h-4 w-4" />
+                        <span>Delete</span>
+                      </>
+                    )}
                   </button>
                 </div>
               </div>
