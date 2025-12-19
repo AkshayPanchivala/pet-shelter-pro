@@ -18,7 +18,7 @@ const options = {
         description: 'Development server',
       },
       {
-        url: 'https://api.petshelterpro.com',
+        url: 'https://pet-shelter-pro.onrender.com',
         description: 'Production server',
       },
     ],
