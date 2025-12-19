@@ -1,0 +1,48 @@
+{
+  "name": "pet-shelter-pro-backend",
+  "version": "1.0.0",
+  "description": "Backend API for Pet Shelter Pro Management System",
+  "main": "src/server.js",
+  "type": "module",
+  "scripts": {
+    "dev": "nodemon src/server.js",
+    "start": "node src/server.js"
+  },
+  "keywords": [
+    "pet",
+    "adoption",
+    "api",
+    "nodejs",
+    "express",
+    "mongodb",
+    "mongoose",
+    "pet-shelter-pro"
+  ],
+  "author": "Akshay Panchivala <akshaypanchivala@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AkshayPanchivala/pet-shelter-pro.git"
+  },
+  "homepage": "https://github.com/AkshayPanchivala/pet-shelter-pro#readme",
+  "bugs": {
+    "url": "https://github.com/AkshayPanchivala/pet-shelter-pro/issues"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cloudinary": "^2.8.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.1",
+    "express": "^4.18.2",
+    "express-validator": "^7.0.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.1.0",
+    "multer": "^2.0.2",
+    "nodemailer": "^7.0.11",
+    "swagger-jsdoc": "^6.2.8",
+    "swagger-ui-express": "^5.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.0.3"
+  }
+}

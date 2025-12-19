@@ -1,0 +1,61 @@
+{
+  "name": "pet-shelter-pro-frontend",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Frontend application for Pet Shelter Pro - A modern pet adoption management system",
+  "type": "module",
+  "author": "Akshay Panchivala <akshaypanchivala@gmail.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AkshayPanchivala/pet-shelter-pro.git"
+  },
+  "homepage": "https://github.com/AkshayPanchivala/pet-shelter-pro#readme",
+  "bugs": {
+    "url": "https://github.com/AkshayPanchivala/pet-shelter-pro/issues"
+  },
+  "keywords": [
+    "react",
+    "typescript",
+    "redux-toolkit",
+    "tailwindcss",
+    "pet-adoption",
+    "vite",
+    "frontend",
+    "pet-shelter-pro"
+  ],
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "lint": "eslint .",
+    "preview": "vite preview",
+    "typecheck": "tsc --noEmit -p tsconfig.app.json"
+  },
+  "dependencies": {
+    "@reduxjs/toolkit": "^2.5.0",
+    "axios": "^1.7.9",
+    "lucide-react": "^0.468.0",
+    "react": "^19.2.3",
+    "react-dom": "^19.2.3",
+    "react-hot-toast": "^2.6.0",
+    "react-redux": "^9.2.0",
+    "react-router": "^7.1.1",
+    "react-router-dom": "^7.1.1"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.9.1",
+    "@types/react": "^19.0.6",
+    "@types/react-dom": "^19.0.2",
+    "@vitejs/plugin-react": "^4.3.4",
+    "autoprefixer": "^10.4.18",
+    "eslint": "^9.9.1",
+    "eslint-plugin-react-hooks": "^5.1.0",
+    "eslint-plugin-react-refresh": "^0.4.16",
+    "globals": "^15.9.0",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.3.0",
+    "vite": "^6.0.5"
+  }
+}

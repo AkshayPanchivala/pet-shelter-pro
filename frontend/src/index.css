@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer components {
+  /* Enhanced Input Styles with Emerald Theme */
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="number"],
+  input[type="url"],
+  textarea,
+  select {
+    @apply border-2 border-gray-300 rounded-lg transition-all duration-200;
+    @apply focus:border-emerald-500 focus:ring-4 focus:ring-emerald-100 focus:outline-none;
+    @apply hover:border-gray-400;
+  }
+
+  /* Default padding for inputs without custom padding */
+  input[type="text"]:not([class*="pl-"]):not([class*="px-"]),
+  input[type="email"]:not([class*="pl-"]):not([class*="px-"]),
+  input[type="password"]:not([class*="pl-"]):not([class*="px-"]),
+  input[type="number"]:not([class*="pl-"]):not([class*="px-"]),
+  input[type="url"]:not([class*="pl-"]):not([class*="px-"]),
+  textarea:not([class*="p-"]):not([class*="px-"]) {
+    @apply px-4 py-2.5;
+  }
+
+  /* Enhanced Select/Dropdown Styles */
+  select {
+    @apply appearance-none cursor-pointer;
+    @apply bg-white bg-no-repeat;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2310b981'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+    background-position: right 0.75rem center;
+    background-size: 1.25rem;
+    padding-right: 2.5rem;
+  }
+
+  select:focus {
+    @apply border-emerald-500 ring-4 ring-emerald-100;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%2310b981'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  }
+
+  /* Textarea specific enhancements */
+  textarea {
+    @apply resize-y min-h-[100px];
+  }
+
+  /* Disabled state */
+  input:disabled,
+  textarea:disabled,
+  select:disabled {
+    @apply bg-gray-100 cursor-not-allowed opacity-60;
+  }
+
+  /* Error state */
+  input.error,
+  textarea.error,
+  select.error {
+    @apply border-red-500 focus:ring-red-100 focus:border-red-500;
+  }
+
+  /* Success state */
+  input.success,
+  textarea.success,
+  select.success {
+    @apply border-emerald-500 focus:ring-emerald-100;
+  }
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #10b981 #f1f5f9;
+  }
+
+  /* Chrome, Edge, Safari */
+  *::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  *::-webkit-scrollbar-track {
+    background: #f1f5f9; /* slate-100 */
+    border-radius: 9999px;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background: linear-gradient(
+      180deg,
+      #10b981,
+      #34d399
+    ); /* emerald gradient */
+    border-radius: 9999px;
+    border: 2px solid #f1f5f9;
+  }
+
+  *::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(
+      180deg,
+      #059669,
+      #10b981
+    );
+  }
+
+  *::-webkit-scrollbar-corner {
+    background: transparent;
+  }
+}
