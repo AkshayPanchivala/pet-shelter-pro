@@ -226,9 +226,12 @@ export const updateApplicationStatus = async (req, res) => {
       }
     }
 
+    // Convert to plain object to ensure proper serialization
+    const applicationData = application.toJSON();
+
     res.status(200).json({
       message: 'Application status updated successfully',
-      application
+      application: applicationData
     });
   } catch (error) {
     console.error('Update application status error:', error);

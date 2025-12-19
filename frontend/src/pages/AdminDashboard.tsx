@@ -84,9 +84,13 @@ export default function AdminDashboard() {
       confirmButtonClass: 'bg-green-600 hover:bg-green-700',
       onConfirm: async () => {
         setApprovingId(applicationId);
+        setConfirmDialog({ ...confirmDialog, isOpen: false });
         try {
           await dispatch(updateStatus({ id: applicationId, status: 'Approved' })).unwrap();
+          // Refresh all applications to get updated status of all affected applications
           await dispatch(fetchAllApplications()).unwrap();
+          // Refresh pets list to reflect adopted status
+          await dispatch(fetchPets()).unwrap();
         } catch (error) {
           console.error('Failed to approve application:', error);
         } finally {
@@ -105,9 +109,13 @@ export default function AdminDashboard() {
       confirmButtonClass: 'bg-red-600 hover:bg-red-700',
       onConfirm: async () => {
         setRejectingId(applicationId);
+        setConfirmDialog({ ...confirmDialog, isOpen: false });
         try {
           await dispatch(updateStatus({ id: applicationId, status: 'Rejected' })).unwrap();
+          // Refresh all applications to ensure consistent state
           await dispatch(fetchAllApplications()).unwrap();
+          // Refresh pets list to reflect any status changes
+          await dispatch(fetchPets()).unwrap();
         } catch (error) {
           console.error('Failed to reject application:', error);
         } finally {
