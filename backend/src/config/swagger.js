@@ -9,7 +9,7 @@ const options = {
       description: 'A comprehensive API for managing pet adoptions, applications, and user authentication',
       contact: {
         name: 'Pet Shelter Pro',
-        email: 'support@petshelterpro.com',
+        email: 'akshaypanchivala@gmail.com',
       },
     },
     servers: [
